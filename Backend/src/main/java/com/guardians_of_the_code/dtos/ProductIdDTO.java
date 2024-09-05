@@ -7,17 +7,12 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-@Getter
 @Setter
+@Getter
+@RequiredArgsConstructor
+@AllArgsConstructor
+public class ProductIdDTO {
+    private String id;
 
-public class ClientIdDTO {
-    private UUID id;
 
-    public ClientIdDTO(){
-
-    }
-
-    public ClientIdDTO(String id){
-        this.id = UUID.fromString(id);
-    }
 }
