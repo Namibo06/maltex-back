@@ -27,8 +27,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (
             "/login/verifyCredentials".equals(requestURI) ||
-            ("/clients".equals(requestURI) && request.getMethod().equals("POST")) ||
-
+            ("/clients".equals(requestURI) && request.getMethod().equals("POST")) 
             ) {
             filterChain.doFilter(request, response);
             return;
