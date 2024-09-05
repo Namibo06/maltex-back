@@ -23,12 +23,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
-        System.out.println(requestURI);
 
         if (
-            "/login/verifyCredentials".equals(requestURI) ||
-            ("/clients".equals(requestURI) && request.getMethod().equals("POST")) 
-            ) {
+                "/login/verifyCredentials".equals(requestURI) ||
+                ("/clients".equals(requestURI) && request.getMethod().equals("POST"))
+
+
+        ) {
             filterChain.doFilter(request, response);
             return;
         }
