@@ -30,15 +30,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         System.out.println(httpRequest.getMethod());
 
         if (
-                ("/clients".equals(requestURI) && "OPTIONS".equals(httpRequest.getMethod())) ||
+                 ("/clients".equals(requestURI) && "OPTIONS".equals(httpRequest.getMethod())) ||
+                        ("/clients".equals(requestURI) && "POST".equals(httpRequest.getMethod())) ||
+                                ("/clients/".equals(requestURI) && "POST".equals(httpRequest.getMethod())) ||
+                                        ("/clients/".equals(requestURI) && "OPTIONS".equals(httpRequest.getMethod())) ||
                 "/login/verifyCredentials".equals(requestURI) ||
                 "/products".equals(requestURI) ||
                 requestURI.matches("/products/[^/]+") ||
                         "/static/**".equals(requestURI) ||
-                        "/swagger-ui/index.html".equals(requestURI) ||
                         requestURI.startsWith("/swagger-ui/") ||
-                        requestURI.startsWith("/v3/api-docs") ||
-                        requestURI.startsWith("/favicon.ico")
+                        "/swagger-ui/index.html".equals(requestURI) ||
+                        requestURI.startsWith("/v3/api-docs")
         ) {
             System.out.println("Passei aqui");
             filterChain.doFilter(request, response);
