@@ -81,13 +81,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private String findToken(HttpServletRequest request) {
-        var authorization = request.getHeader("Authorization");
-        System.out.println("auth"+authorization);
+    var authorization = request.getHeader("Authorization");
+    System.out.println("auth" + authorization);
 
-        if (authorization == null || !authorization.startsWith("Authorization Bearer ")) {
-            return null;
-        }
-            System.out.println(authorization.substring(21).trim());
-        return authorization.substring(21).trim();
+    // Verifica se o cabeçalho começa com "Bearer " (e não "Authorization Bearer ")
+    if (authorization == null || !authorization.startsWith("Bearer ")) {
+        return null;
     }
+    // Retorna o token sem o prefixo "Bearer "
+    return authorization.substring(7).trim(); // Substring a partir do 7º caractere, ignorando "Bearer "
+}
+
 }
