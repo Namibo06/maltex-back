@@ -25,12 +25,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String requestURI = request.getRequestURI();
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         System.out.println(requestURI);
-        System.out.println(findToken(request));
         System.out.println(request.getMethod());
-        System.out.println(httpRequest.getMethod());
 
         if (
-                 ("/clients".equals(requestURI) && "OPTIONS".equals(httpRequest.getMethod())) ||
+                ("/clients".equals(requestURI) && "OPTIONS".equals(httpRequest.getMethod())) ||
                         ("/clients".equals(requestURI) && "POST".equals(httpRequest.getMethod())) ||
                                 ("/clients/".equals(requestURI) && "POST".equals(httpRequest.getMethod())) ||
                                         ("/clients/".equals(requestURI) && "OPTIONS".equals(httpRequest.getMethod())) ||
@@ -42,7 +40,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         "/swagger-ui/index.html".equals(requestURI) ||
                         requestURI.startsWith("/v3/api-docs")
         ) {
-            System.out.println("Passei aqui");
             filterChain.doFilter(request, response);
             return;
         }
@@ -50,7 +47,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         var token = findToken(request);
 
         if (token == null || token.isEmpty()) {
-            System.out.println("Passei aqui no null");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("\"Token não encontrado ou mal formatado\"");
             return;
@@ -75,7 +71,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
             verifier.verify(token);
         } catch (Exception e) {
-            System.out.println("De merda no catch");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("\"Token inválido\"");
             return;
@@ -85,15 +80,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private String findToken(HttpServletRequest request) {
-    var authorization = request.getHeader("Authorization");
-    System.out.println("auth" + authorization);
+        var authorization = request.getHeader("Authorization");
 
-    // Verifica se o cabeçalho começa com "Bearer " (e não "Authorization Bearer ")
-    if (authorization == null || !authorization.startsWith("Bearer ")) {
-        return null;
+
+        if (authorization == null || !authorization.startsWith("Bearer ")) {
+            return null;
+        }
+
+        return authorization.substring(7).trim();
     }
-    // Retorna o token sem o prefixo "Bearer "
-    return authorization.substring(7).trim(); // Substring a partir do 7º caractere, ignorando "Bearer "
-}
-
 }
