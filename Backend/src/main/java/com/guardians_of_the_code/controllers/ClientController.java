@@ -60,6 +60,8 @@ public class ClientController {
             }
     )
     public ResponseEntity<MessageStatusDTO> createClient(@RequestBody ClientRequestDTO client, UriComponentsBuilder uriBuilder){
+        System.out.println(client);
+        System.out.println("cheguei");
         Client clientModel = createClientUseCase.execute(client);
         UUID clientId = clientModel.getId();
         URI path = uriBuilder.path("/clients/{id}").buildAndExpand(clientId).toUri();
