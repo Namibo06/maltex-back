@@ -38,6 +38,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         requestURI.startsWith("/v3/api-docs") ||
                         requestURI.startsWith("/favicon.ico")
         ) {
+            System.out.println("Passei aqui");
             filterChain.doFilter(request, response);
             return;
         }
@@ -45,6 +46,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         var token = findToken(request);
 
         if (token == null || token.isEmpty()) {
+            System.out.println("Passei aqui no null");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("\"Token não encontrado ou mal formatado\"");
             return;
@@ -69,6 +71,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
             verifier.verify(token);
         } catch (Exception e) {
+            System.out.println("De merda no catch");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("\"Token inválido\"");
             return;
@@ -79,11 +82,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private String findToken(HttpServletRequest request) {
         var authorization = request.getHeader("Authorization");
+        System.out.println("auth"+authorization);
 
         if (authorization == null || !authorization.startsWith("Authorization Bearer ")) {
             return null;
         }
-
+            System.out.println(authorization.substring(21).trim());
         return authorization.substring(21).trim();
     }
 }
