@@ -25,6 +25,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String requestURI = request.getRequestURI();
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         System.out.println(requestURI);
+        System.out.println(findToken(request));
 
         if (
                 ("/clients".equals(requestURI) && "POST".equals(httpRequest.getMethod())) ||
