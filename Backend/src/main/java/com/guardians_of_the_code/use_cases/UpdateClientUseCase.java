@@ -38,11 +38,6 @@ public class UpdateClientUseCase {
             throw new HandleBadRequestException("A senha deve ter no minimo 8 e no máximo 100 caracteres");
         }
 
-        boolean existsPhone = service.existsClientByPhone(request.getPhone());
-        if(existsPhone){
-            throw new HandleConflictException("Número de celular já existe");
-        }
-
         boolean existsByEmailAndId = service.existsClientByEmailAndId(uuid, request.getEmail());
         if(existsByEmailAndId){
             throw new HandleConflictException("Email já existe");

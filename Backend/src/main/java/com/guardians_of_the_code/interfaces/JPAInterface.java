@@ -21,8 +21,6 @@ public interface JPAInterface extends JpaRepository<Client,UUID> {
 
     boolean existsClientById(UUID uuid);
 
-    boolean existsClientByPhone(String phone);
-
     boolean existsByIdAndEmail(UUID uuid, String email);
 
     boolean existsByEmailAndIdNot(String email,UUID uuid);
