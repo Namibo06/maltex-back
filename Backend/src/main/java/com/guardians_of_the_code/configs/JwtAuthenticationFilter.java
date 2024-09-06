@@ -79,6 +79,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private String findToken(HttpServletRequest request) {
         var authorization = request.getHeader("Authorization");
+        System.out.println("Authorization:"+authorization);
 
         if (authorization == null || !authorization.startsWith("Authorization Bearer ")) {
             return null;
