@@ -10,19 +10,15 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
-@Component
-public class CorsConfig {
-    @Bean
-    public CorsFilter corsFilter(){
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedHeader("*");
-        config.addExposedHeader("*");
-        config.setAllowedMethods(Arrays.asList("POST","GET","PUT","DELETE"));
-        config.setAllowedOrigins(Arrays.asList("https://malte-x.vercel.app/", "http://localhost:8080"));
+@Configuration
+public class CorsConfig implements WebMvcConfigurer {
 
-        source.registerCorsConfiguration("/**", config);
-        return new CorsFilter();
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("https://malte-x.vercel.app", "http://localhost:8080")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }
