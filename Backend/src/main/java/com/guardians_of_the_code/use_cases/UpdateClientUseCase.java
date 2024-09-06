@@ -24,12 +24,6 @@ public class UpdateClientUseCase {
             throw new HandleBadRequestException("Senha não pode ser vazia ou nula");
         }
 
-        if(request.getUf() != null){
-            if(request.getUf().length() != 2){
-                throw new HandleBadRequestException("UF deve  conter 2 caracteres");
-            }
-        }
-
         if(request.getEmail().length() > 120 || request.getEmail().length() < 15){
             throw new HandleBadRequestException("O email deve ter no minimo 15 e no máximo 120 caracteres");
         }
