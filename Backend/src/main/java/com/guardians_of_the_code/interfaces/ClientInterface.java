@@ -14,6 +14,7 @@ public interface ClientInterface {
     public void deleteClient(UUID uuid);
     public boolean updateTokenClient(String email,String token);
     public boolean existsClientByEmail(String email);
+    public boolean existsClientByPhone(String phone);
     public boolean existsClient(UUID uuid);
     public boolean existsClientByEmailAndId(UUID uuid,String email);
 }

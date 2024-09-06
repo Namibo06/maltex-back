@@ -90,6 +90,10 @@ public class ClientRepository implements ClientInterface {
             existingClient.setEmail(client.getEmail());
         }
 
+        if (client.getPhone() != null && !client.getPhone().isEmpty()) {
+            existingClient.setPhone(client.getPhone());
+        }
+
         if(client.getPassword() != null && !client.getPassword().isEmpty()){
             existingClient.setPassword(encoder.encode(client.getPassword()));
         }
@@ -119,6 +123,11 @@ public class ClientRepository implements ClientInterface {
     @Override
     public boolean existsClientByEmail(String email) {
         return jpaRepository.existsClientByEmail(email);
+    }
+
+    @Override
+    public boolean existsClientByPhone(String phone) {
+        return jpaRepository.existsClientByPhone(phone);
     }
 
     @Override

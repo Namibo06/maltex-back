@@ -38,9 +38,14 @@ public class CreateClientUseCase {
         }
 
         boolean existsEmail = service.existsClientByEmail(client.getEmail());
+        boolean existsPhone = service.existsClientByPhone(client.getPhone());
 
         if(existsEmail){
             throw new HandleConflictException("Email já existe");
+        }
+
+        if(existsPhone){
+            throw new HandleConflictException("Número de celular já existe");
         }
 
         return service.createClient(client);

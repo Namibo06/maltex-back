@@ -18,4 +18,5 @@ public class ClientResponseDTO {
     private String road;
     private String number_house;
     private String complement;
+    private String phone;
 }
