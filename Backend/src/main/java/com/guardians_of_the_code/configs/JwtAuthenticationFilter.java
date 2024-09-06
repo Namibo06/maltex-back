@@ -81,11 +81,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         var authorization = request.getHeader("Authorization");
         System.out.println("Authorization:"+authorization);
 
-        if (authorization == null || !authorization.startsWith("Authorization Bearer ")) {
+        if (authorization == null || !authorization.startsWith("Authorization Bearer ") || !authorization.startsWith("Authorization: Bearer ")) {
             return null;
         }
 
-        String token = authorization.substring(14).trim();
+        String token = authorization.substring(21).trim();
 
         return token;
     }
