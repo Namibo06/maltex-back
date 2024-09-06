@@ -5,10 +5,9 @@ import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.servers.Server;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
+import io.swagger.v3.oas.annotations.security.SecuritySchemeType;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.annotation.Secured;
-import org.springdoc.core.annotations.SecurityScheme;
-import org.springdoc.core.annotations.SecuritySchemeType;
 
 @OpenAPIDefinition(
         info = @Info(
@@ -35,7 +34,6 @@ import org.springdoc.core.annotations.SecuritySchemeType;
     scheme = "bearer",
     bearerFormat = "JWT"
 )
-
 @Configuration
 public class SwaggerConfig {
 
