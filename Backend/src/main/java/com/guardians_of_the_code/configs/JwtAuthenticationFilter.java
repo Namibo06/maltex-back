@@ -30,7 +30,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         System.out.println(httpRequest.getMethod());
 
         if (
-                ("/clients".equals(requestURI) && "POST".equals(httpRequest.getMethod())) ||
+                ("/clients".equals(requestURI) && "OPTIONS".equals(httpRequest.getMethod())) ||
                 "/login/verifyCredentials".equals(requestURI) ||
                 "/products".equals(requestURI) ||
                 requestURI.matches("/products/[^/]+") ||
