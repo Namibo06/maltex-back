@@ -7,6 +7,8 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.annotation.Secured;
+import org.springdoc.core.annotations.SecurityScheme;
+import org.springdoc.core.annotations.SecuritySchemeType;
 
 @OpenAPIDefinition(
         info = @Info(
@@ -27,6 +29,13 @@ import org.springframework.security.access.annotation.Secured;
         },
         security = @SecurityRequirement(name = "bearerAuth")
 )
+@SecurityScheme(
+    name = "bearerAuth",
+    type = SecuritySchemeType.HTTP,
+    scheme = "bearer",
+    bearerFormat = "JWT"
+)
+
 @Configuration
 public class SwaggerConfig {
 
