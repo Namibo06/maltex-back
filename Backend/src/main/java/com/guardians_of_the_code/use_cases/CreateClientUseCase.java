@@ -19,22 +19,6 @@ public class CreateClientUseCase {
             throw new HandleBadRequestException("Nome não pode ser vazio ou nulo");
         }
 
-        if(client.getUf().isEmpty() || client.getUf().isBlank()){
-            throw new HandleBadRequestException("Uf não pode ser vazia ou nula");
-        }
-
-        if(client.getCity().isEmpty() || client.getCity().isBlank()){
-            throw new HandleBadRequestException("Cidade não pode ser vazia ou nula");
-        }
-
-        if(client.getNeighborhood().isEmpty() || client.getNeighborhood().isBlank()){
-            throw new HandleBadRequestException("Bairro não pode ser vazia ou nula");
-        }
-
-        if(client.getRoad().isEmpty() || client.getRoad().isBlank()){
-            throw new HandleBadRequestException("Rua não pode ser vazia ou nula");
-        }
-
         if(client.getEmail().isEmpty() || client.getEmail().isBlank()){
             throw new HandleBadRequestException("Email não pode ser vazio ou nulo");
         }
@@ -47,8 +31,10 @@ public class CreateClientUseCase {
             throw new HandleBadRequestException("Senha não pode ser vazia ou nula");
         }
 
-        if(client.getUf().length() != 2){
-            throw new HandleBadRequestException("UF deve  conter 2 caracteres");
+        if(client.getUf() != null){
+            if(client.getUf().length() != 2){
+                throw new HandleBadRequestException("UF deve  conter 2 caracteres");
+            }
         }
 
         if(client.getName().length() > 30){
