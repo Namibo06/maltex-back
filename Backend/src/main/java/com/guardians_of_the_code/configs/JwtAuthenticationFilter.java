@@ -85,7 +85,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return null;
         }
 
-        String token = authorization.substring(22).trim();
+        String token = authorization.substring(14).trim();
 
         return token;
     }
