@@ -20,7 +20,7 @@ public class StaticResourceCorsFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
 
         // Adicionar os cabeçalhos CORS para os recursos estáticos
-        res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+        res.setHeader("Access-Control-Allow-Origin", "*");
         res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
         res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
