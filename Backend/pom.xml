@@ -123,6 +123,13 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/assets/**</include>
+				</includes>
+		</resource>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
