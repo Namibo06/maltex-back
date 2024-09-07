@@ -29,7 +29,7 @@ public class Security {
     public SecurityFilterChain filterSecurity(HttpSecurity http, CorsConfigurationSource corsConfigurationSource) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .cors(cors -> cors.configurationSource(corsConfigurationSource)); // Configuração de CORS
+                .cors(cors -> cors.configurationSource(corsConfigurationSource));
         return http.build();
     }
 }
