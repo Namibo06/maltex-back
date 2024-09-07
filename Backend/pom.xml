@@ -129,7 +129,8 @@
 				<includes>
 					<include>**/assets/**</include>
 				</includes>
-		</resource>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
