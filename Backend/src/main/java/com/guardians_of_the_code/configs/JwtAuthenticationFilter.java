@@ -34,6 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                         ("/clients/".equals(requestURI) && "OPTIONS".equals(httpRequest.getMethod())) ||
                 "/login/verifyCredentials".equals(requestURI) ||
                 "/products".equals(requestURI) ||
+                requestURI.startsWith("/products") ||
                 requestURI.matches("/products/[^/]+") ||
                         "/static/**".equals(requestURI) ||
                         requestURI.startsWith("/swagger-ui/") ||
